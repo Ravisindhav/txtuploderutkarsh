@@ -1,6 +1,7 @@
 import os
 
-API_ID = API_ID =  
+# You need to fill in your actual API_ID or set it as an environment variable
+API_ID = int(os.environ.get("API_ID", ""))  # Replace 123456 with your actual ID or set via env
 
 API_HASH = os.environ.get("API_HASH", "")
 
@@ -8,20 +9,22 @@ BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
 
 PASS_DB = int(os.environ.get("PASS_DB", "721"))
 
-OWNER = int(os.environ.get("OWNER", ))
+# Make sure OWNER is provided in environment or hardcode it here
+OWNER = int(os.environ.get("OWNER", "502980590"))  # Replace with your Telegram ID or set via env
 
-LOG = ,
+# Replace with actual log chat ID or default value
+LOG = int(os.environ.get("LOG", "-1001234567890"))  # Replace with your log group/channel ID
 
-# UPDATE_GRP = , # bot sat group
-
-# auth_chats = []
+# UPDATE_GRP = int(os.environ.get("UPDATE_GRP", "-100xxxxxxxxxx"))  # Optional: uncomment if used
+# auth_chats = []  # Optional: add if required
 
 try:
-    ADMINS=[]
-    for x in (os.environ.get("ADMINS", "502980590").split()):
+    ADMINS = []
+    for x in os.environ.get("ADMINS", "502980590").split():
         ADMINS.append(int(x))
 except ValueError:
-        raise Exception("Your Admins list does not contain valid integers.")
-ADMINS.append(OWNER)
+    raise Exception("Your Admins list does not contain valid integers.")
 
-
+# Make sure OWNER is included in ADMINS
+if OWNER not in ADMINS:
+    ADMINS.append(OWNER)
